@@ -15,21 +15,23 @@
  */
 
 function removeSched(scheduleId) {
-  var scheduleURL = contextURL + "/schedule"
-  var redirectURL = contextURL + "/schedule"
-  var requestData = {
-    "action": "removeSched",
-    "scheduleId": scheduleId
-  };
-  var successHandler = function (data) {
-    if (data.error) {
-      $('#errorMsg').text(data.error);
-    }
-    else {
-      window.location = redirectURL;
-    }
-  };
-  $.post(scheduleURL, requestData, successHandler, "json");
+  if(confirm('Confirm to delete selected Schedule？')) {
+    var scheduleURL = contextURL + "/schedule"
+    var redirectURL = contextURL + "/schedule"
+    var requestData = {
+      "action": "removeSched",
+      "scheduleId": scheduleId
+    };
+    var successHandler = function (data) {
+      if (data.error) {
+        $('#errorMsg').text(data.error);
+      }
+      else {
+        window.location = redirectURL;
+      }
+    };
+    $.post(scheduleURL, requestData, successHandler, "json");
+  }
 }
 
 function removeSla(scheduleId) {
